@@ -1,0 +1,30 @@
+.container {
+    width: 100vw;
+    display: flex;
+    background-color: black;
+}
+
+.content {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.item:hover {
+    background-color: #333333;
+}
+
+.item {
+    display: flex;
+    flex-direction: row;
+    padding: 8px;
+    background-color: #000000;
+}
+
+.item span {
+
+    font-size: 24px;
+    padding: 30px;
+    color: white;
+}
