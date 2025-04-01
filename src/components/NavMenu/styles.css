@@ -19,9 +19,19 @@
 .item {
     width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
     padding: 8px;
     background-color: #000000;
+    text-decoration: none;
+}
+
+.item svg {
+    width: 30px;
+    height: 30px;
+    color: #ffffff;
+    margin-left: 20px;
 }
 
 .item span {
@@ -29,3 +39,17 @@
     font-size: 30px;
     color: white;
 }
+
+
+.selected {
+    background-color: white;
+}
+
+.selected span {
+    color: black;
+}
+
+.selected svg {
+    color: black;
+}
+
