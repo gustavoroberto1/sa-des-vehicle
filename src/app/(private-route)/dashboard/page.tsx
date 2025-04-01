@@ -1,5 +1,9 @@
-export default function Dashboard(){
-    return (
-        <h1>Dashboard</h1>
-    )
+import "./styles.css";
+
+export default function Dashboard() {
+  return (
+    <div className="container">
+      
+    </div>
+  );
 }
