@@ -1,6 +1,6 @@
 'use client'
 import Link from "next/link"
-import "./styles.css"
+import styles from "./styles.module.css"
 import logo from '@/assets/logo_full.png';
 import { usePathname } from "next/navigation"
 import { MdBuild, MdCheckCircle, MdFactory, MdHome, MdInventory } from "react-icons/md";
@@ -37,28 +37,29 @@ export default function NavMenu() {
         },
     ]
 
-
-
     return (
-        <div className="container">
+        <div className={styles.container}>
             <Image src={logo}  width={250} height={100} alt="" />
-            <div className="content">
-                {itens.map(item => (
-                    <Link
-                        key={item.label}
-                        className={`item ${pathName === item.page ? "selected" : ""}`}
-                        href={item.page}
-                    >
-                        {item.icon}
-                        <span>{item.label}</span>
-                    </Link>
-                ))}
-            </div>
-            <div className="profile">
-                <img src="https://github.com/gustavoroberto1.png" />
-                <div className="profile-infos">
-                    <strong>Gustavo Souza</strong>
-                    <strong>gustavo@gmail.com</strong>
+            
+            <div>
+                <div className={styles.profile}>
+                    <img src="https://github.com/gustavoroberto1.png" />
+                    <div className={styles.profileInfos}>
+                        <strong>Gustavo Souza</strong>
+                        <strong>gustavo@gmail.com</strong>
+                    </div>
+                </div>
+                <div className={styles.content}>
+                    {itens.map(item => (
+                        <Link
+                            key={item.label}
+                            className={`${styles.item} ${pathName === item.page ? styles.selected : ""}`}
+                            href={item.page}
+                        >
+                            {item.icon}
+                            <span>{item.label}</span>
+                        </Link>
+                    ))}
                 </div>
             </div>
         </div>
