@@ -2,7 +2,13 @@
     width: 300px;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     background-color: black;
+    justify-content: space-between;
+}
+
+.container img {
+    margin: 30px 20px 50px;
 }
 
 .content {
@@ -11,6 +17,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-bottom: 60px;
 }
 .item:hover {
     background-color: #333333;
@@ -25,6 +32,8 @@
     padding: 8px;
     background-color: #000000;
     text-decoration: none;
+    padding: 16px 24px;
+    column-gap: 16px;
 }
 
 .item svg {
@@ -35,14 +44,16 @@
 }
 
 .item span {
-    padding: 24px;
     font-size: 30px;
     color: white;
 }
 
-
 .selected {
     background-color: white;
+}
+
+.selected:hover {
+    background-color: #f1f1f1;
 }
 
 .selected span {
@@ -53,3 +64,23 @@
     color: #666666;
 }
 
+.profile {
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    justify-content: start;
+}
+
+.profile img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.profile-infos {
+    display: flex;
+    flex-direction: column;
+    color: #ffffff;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+}
