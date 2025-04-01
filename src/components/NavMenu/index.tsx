@@ -16,22 +16,22 @@ export default function NavMenu() {
         },
         {
             label: "Manutenção",
-            page: '/teste',
+            page: '/manutencao',
             icon: <BsSquareHalf />
         },
         {
             label: "Produção",
-            page: '/teste2',
+            page: '/producao',
             icon: <BsAndroid />
         },
         {
             label: "Estoque",
-            page: '/stock',
+            page: '/estoque',
             icon: <BsPersonCircle />
         },
         {
             label: "Qualidade",
-            page: '/quality',
+            page: '/qualidade',
             icon: <BsPersonCircle />
         },
     ]
