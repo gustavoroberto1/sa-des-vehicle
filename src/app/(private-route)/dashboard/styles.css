@@ -1,0 +1,30 @@
+.container{
+    background-color: rgb(0, 0, 0);
+    width: 100%;
+    height: 100vh;
+}
+
+.container .redirection {
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    border-radius: 8px;
+    padding: 100px;
+    border: none;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.container button {
+    margin: 100px 50px;
+    text-align: center;
+    display: flex;
+    border-radius: 100px;
+    padding: 20px;
+    background-color: #4c2479;
+    font-size: 20px;
+    color: #ffffff;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}

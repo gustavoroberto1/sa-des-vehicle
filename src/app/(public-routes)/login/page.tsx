@@ -44,10 +44,12 @@ export default function Home() {
         </button>
       </div>
       <div className="new-user">
-        <div>
-          <h5>Ainda não possui acesso? Então  </h5>
+        <div className="cadastro">
+          <h3>Não registrado?</h3>
+        <button className="button-register-user">
+          Cadastre-se
+          </button>
         </div>
-        <button className="button-register-user">Cadastre-se</button>
       </div>
     </div>
   );
