@@ -2,7 +2,11 @@
 import Link from "next/link"
 import "./styles.css"
 import { usePathname } from "next/navigation"
-import { BsAndroid, BsPerson, BsPersonCircle, BsSquareHalf } from "react-icons/bs";
+import { PiSealCheckBold } from "react-icons/pi";
+import { FaHome } from "react-icons/fa";
+import { BiBox } from "react-icons/bi";
+import { MdForklift } from "react-icons/md";
+import { HiMiniWrenchScrewdriver } from "react-icons/hi2";
 
 export default function NavMenu() {
     const pathName = usePathname();
@@ -12,27 +16,27 @@ export default function NavMenu() {
         {
             label: "Home",
             page: '/dashboard',
-            icon: <BsPersonCircle />
+            icon: <FaHome />
         },
         {
             label: "Manutenção",
             page: '/manutencao',
-            icon: <BsSquareHalf />
+            icon: <HiMiniWrenchScrewdriver />
         },
         {
             label: "Produção",
             page: '/producao',
-            icon: <BsAndroid />
+            icon: <MdForklift />
         },
         {
             label: "Estoque",
             page: '/estoque',
-            icon: <BsPersonCircle />
+            icon: <BiBox />
         },
         {
             label: "Qualidade",
             page: '/qualidade',
-            icon: <BsPersonCircle />
+            icon: <PiSealCheckBold />
         },
     ]
 
