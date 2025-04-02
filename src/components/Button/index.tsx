@@ -1,3 +1,7 @@
+import styles from "./styles.module.css"
+
 export function Button() {
-    return <h1>BUTTON</h1>
+    return (
+        <div className={styles.container}></div>
+    )
 }
