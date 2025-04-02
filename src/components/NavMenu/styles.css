@@ -1,8 +1,9 @@
 .container {
-    width: 300px;
+    width: 280px;
     height: 100vh;
     display: flex;
     background-color: black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .content {

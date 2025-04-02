@@ -43,14 +43,6 @@ export default function Home() {
           Entrar
         </button>
       </div>
-      <div className="new-user">
-        <div className="cadastro">
-          <h3>Não registrado?</h3>
-        <button className="button-register-user">
-          Cadastre-se
-          </button>
-        </div>
-      </div>
     </div>
   );
 }
