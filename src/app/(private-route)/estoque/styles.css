@@ -1,0 +1,23 @@
+.estoque-container .form{
+    display: flex;
+    flex-direction: column;
+    background-color: #666777;
+    width: 650px;
+    border-radius: 16px;
+    padding: 20px;
+}
+
+.estoque-container .form input{
+    width: 100%;
+    background-color: #f8f8fb;
+    height: 80px;
+    padding: 16px;
+    border-radius: 8px;
+    line-height: 1.4;
+    color: #ffffff;
+    resize: none;
+}
+
+.estoque-container .form input:focus-within {
+    outline: 2px solid #00875f;
+}
