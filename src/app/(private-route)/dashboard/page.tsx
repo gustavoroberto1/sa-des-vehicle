@@ -46,6 +46,30 @@ export default function Dashboard() {
                     </div>
                 </div>
             </div>
+
+            <div className={styles.header}>
+                <ul>
+                    <li>Nome</li>
+                    <li>Valor</li>
+                    <li>Ações</li>
+                    <li>Blabla</li>
+                </ul>
+            </div>
+
+            <div className={styles.datagrid}>
+                <ul>
+                    <li>Nome</li>
+                    <li>Valor</li>
+                    <li></li>
+                    <li>Blabla</li>
+                </ul>
+                <ul>
+                    <li>João</li>
+                    <li>R$2313.33</li>
+                    <li>Deletar</li>
+                    <li>Blabla  </li>
+                </ul>
+            </div>
         </div>
     )
 }

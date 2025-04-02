@@ -70,3 +70,43 @@
     font-size: 32px;
     letter-spacing: 2%;
 }
+
+.datagrid {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 40px;
+}
+
+.datagrid ul {
+    background-color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.datagrid ul li {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    padding: 20px 40px;
+    width: 100%;
+}
+
+.header ul {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.header ul li {
+    list-style: none;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
