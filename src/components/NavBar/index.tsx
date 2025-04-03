@@ -1,29 +1,70 @@
-import "./style.css"
+'use client'
+import "./style.css";
 import { FaHome } from "react-icons/fa";
-import { MdPrecisionManufacturing } from "react-icons/md"
+import { MdPrecisionManufacturing } from "react-icons/md";
 import { FaCar } from "react-icons/fa";
 import { FaCheck } from "react-icons/fa";
-import { FaGear } from "react-icons/fa6";
+import { BsTools } from "react-icons/bs";
+import { usePathname } from "next/navigation";
 import { CiLogout } from "react-icons/ci";
-
+import { FaRegUserCircle } from "react-icons/fa";
+import Link from "next/link"; 
 
 export default function NavBar() {
+    const pathName = usePathname();
+
+    const itens = [
+        {
+            label: "Home",
+            page: '/dashboard',
+            icon: <FaHome />
+        },
+        {
+            label: "Produção",
+            page: '/Producao',
+            icon: <MdPrecisionManufacturing />
+        },
+        {
+            label: "Estoque",
+            page: '/Estoque',
+            icon: <FaCar />
+        },
+        {
+            label: "Manutenção",
+            page: '/Manutencao',
+            icon:<BsTools />
+            
+        },
+        {
+            label: "Qualidade",
+            page: '/Qualidade',
+            icon: <FaCheck />
+        },
+        {
+            label: "Logout",
+            page: '/Login',
+            icon: <CiLogout />
+        },
+    ];
+
     return (
         <div className="container">
-            <nav>
-                <div className="nav-bar">
-                    <div className="Avatar">
-                        <h1 className="avatar"><img src="https://github.com/J3runo.png" alt="avatar" width="70px" height="70px" borde-radius="20px"/></h1>
-                        
-                    </div>
-                    <button><FaHome />Home</button>
-                    <button><MdPrecisionManufacturing />Produção</button>
-                    <button><FaCar />Estoque</button>
-                    <button><FaGear />Manutenção</button>
-                    <button><FaCheck /> Qualidade</button>
-                    <button><CiLogout />Logout</button>
+            <div className="content">
+                <div className="Avatar">
+                <FaRegUserCircle size={140} />
+                    <h2>Bruno</h2>
                 </div>
-            </nav>
-        </div>
-    )
+                {itens.map(item => (
+                    <Link 
+                        key={item.label} 
+                        href={item.page}
+                        className={`item ${pathName === item.page ? "selected" : ""}`}
+                    >
+                        {item.icon}
+                        <span>{item.label}</span>
+                    </Link>
+                ))}
+            </div>
+        // </div>
+    );
 }

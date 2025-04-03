@@ -31,7 +31,7 @@ export default function Login() {
                     <a href="http://">Cadastre-se</a>
                 
                 </div>
-            </div>
+            </div> 
         </body >
     )
 }
