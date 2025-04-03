@@ -1,67 +1,105 @@
 body {
-    background-color: #c4c4cc;
-    font-family:'Times New Roman', Times, serif;
+    background-color: #c7c7c7;
+    font-family: 'Times New Roman', Times, serif;
     height: 100vh;
     display: flex;
     justify-content: center;
-    align-items:center;
+    align-items: center;
 }
 
 .container {
-    background-color: aquamarine;
+    background-color: #a9a9a9;
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    max-width: 50%;
-    padding: 20px;
+    min-width: 30%;
+    min-height: 30%;
+    padding: 14px;
     border-radius: 16px;
-    border: 2px solid white;
-}
-
-.container h1 {
-    background-color: brown;
-    text-align: center;
-    
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 12px 13px;
 }
 
 .container .inputs {
     display: flex;
+    min-width: 100%;
     flex-direction: column;
     border-radius: 6px;
     padding: 10px;
-
-}
-
-.container .item {
-    display: flex;
-    margin-top: 10px;
-    min-width: 250px;    
+    
 }
 
 .container input {
-    min-width: 300px;
-    min-height: 40px;
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: none;
+}
+
+.container .icons {
+    display: flex;
+    margin-top: -72px;
+    background-color: #a9a9a9;
+    border-radius: 50%;
+    margin-bottom: 16px;
+}
+
+.container .itens-1 {
+    display: flex;
+    flex-direction: row;
+    height: 42px;
+    margin-top: 0px;
+    margin-bottom: 22px;
+}
+
+.container .icon-text {
+    background-color: #c4c4c4;
+    border-right: 1px solid #a9a9a9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 15%;
+    height: 42px;
+}
+
+.container .itens-2 {
+    display: flex;
+    flex-direction: row;
+    height: 42px;
+    margin-bottom: 12px;
+}
+
+.container .icon-password {
+    background-color: #c4c4c4;
+    border-right: 1px solid #a9a9a9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 15%;
+    height: 42px;
 }
 
 .container button {
     border-radius: 8px;
     border: none;
-    background-color: #4c4c4c;
+    background-color: #363636;
     color: #ffffff;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
     font-weight: bold;
     margin-top: 16px;
     cursor: pointer;
-    min-width: 300px;
-    min-height: 50px;
+    min-width: 100%;
+    min-height: 62px;
 }
 
 .container button:hover {
     background-color: #5c5e5d;
 }
 
-.container .icons {
-    
+.container a {
+    margin-top: 12px;
+    color: black;
+    font-size: 18px;
+    text-decoration: none;
+    margin-left: 8px;
 }
-
