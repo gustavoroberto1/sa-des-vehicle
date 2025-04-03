@@ -27,7 +27,9 @@ export default function Login() {
                     <div className="button-login">
                         <button>Login</button>
                     </div>
+
                     <a href="http://">Cadastre-se</a>
+                
                 </div>
             </div>
         </body >
