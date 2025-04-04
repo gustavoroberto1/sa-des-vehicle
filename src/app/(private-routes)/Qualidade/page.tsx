@@ -1,5 +1,11 @@
+import './Style.css'
 export default function Qualidade(){
     return(
-        <h1>Qualidade </h1>
+        <div className="Container">
+        <header>
+        <h1>Qualidade</h1>
+      </header>
+
+        </div>
     )
 }
