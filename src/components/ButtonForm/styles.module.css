@@ -1,0 +1,15 @@
+.button {
+    border: none;
+    background-color: #50cf01;
+    padding: 20px;
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.button:hover {
+    opacity: 0.8;
+}

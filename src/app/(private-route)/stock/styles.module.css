@@ -1,0 +1,74 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex: 1;
+}
+
+.content {
+    background-color: #ffffff;
+    width: 100%;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    padding: 20px 40px;
+    margin-bottom: 16px;
+}
+
+.selectProduct {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.selectRegister {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    border: 1px solid #cccccc;
+    padding: 10px 30px;
+    border-radius: 10px;
+    margin-bottom: 16px;
+}
+
+.selectRegister span {
+    font-size: 20px;
+}
+
+.form {
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.formSeparetor {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.buttonAdd {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    padding: 0 8px;
+    background-color: #50cf01;
+    margin-left: -10px;
+    cursor: pointer;
+}
+
+.buttonAdd:hover {
+    opacity: 0.8;
+}
+
+.buttonAdd svg {
+    color: #ffffff;
+}
+
+.buttonGroup {
+    display: flex;
+    flex: 1;
+    justify-content: end;
+}
