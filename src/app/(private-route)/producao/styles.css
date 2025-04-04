@@ -1,9 +1,37 @@
+.producao-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    font-family: Arial, sans-serif;
+}
 
-.container-input {
-    padding: 20px;
+.input {
     display: flex;
-    flex-direction: row;
-    gap: 10px;
-    width: 10lvw;
-    height: 9vh;
+    gap: 15px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.input input, .input select {
+    flex: 1;
+    min-width: 180px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.produtos {
+    margin-top: 20px;
+    padding: 20px;
+    border-top: 1px solid #eee;
+}
+
+.produtos h1 {
+    font-size: 25px;
+    color: #333;
 }
