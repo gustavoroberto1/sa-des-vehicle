@@ -17,7 +17,6 @@ export default function Stock() {
         <div className={styles.container}>
             <ModalNewMarca open={openModal} handleClose={() => setOpenModal(!openModal)} />
             <h1>Estoque</h1>
-
             <div className={styles.content}>
                 <h2>Entrada de produtos</h2>
                 <form className={styles.form}>
@@ -54,7 +53,7 @@ export default function Stock() {
                                     </Select>
                                 </FormControl>
                                 <FormControl sx={{ width: '60%' }}>
-                                    <InputLabel sx={{ width: "30%" }}>Selecione a Marca</InputLabel>
+                                    <InputLabel>Selecione a Marca</InputLabel>
                                     <Select label="Selecione a Marca">
                                         <MenuItem value={10}>Bosch</MenuItem>
                                         <MenuItem value={20}>BlaBlaBla</MenuItem>
