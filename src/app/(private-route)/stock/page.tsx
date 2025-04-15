@@ -6,12 +6,81 @@ import { useState } from 'react';
 import { AddCircleOutline } from '@mui/icons-material';
 import { ButtonForm } from '@/components/ButtonForm';
 import { ModalNewMarca } from '@/components/ModalNewMarca';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
+
+const columns: GridColDef<(typeof rows)[number]>[] = [
+    { field: 'id', headerName: 'ID' },
+    {
+        field: 'nome',
+        headerName: 'Nome',
+        width: 300 
+    },
+    {
+        field: 'description',
+        headerName: 'Descrição',
+        width: 500,
+    },
+    {
+        field: 'category',
+        headerName: 'Categoria',
+    },
+    {
+        field: 'marca',
+        headerName: 'Marca',
+    },
+    {
+        field: 'amount',
+        headerName: 'Quantidade',
+        type: 'number'
+    },
+];
+
+const rows = [
+    {
+        id: 1,
+        nome: 'Filtro de Óleo',
+        description: 'Filtro responsável por remover impurezas do óleo do motor.',
+        category: 'Motor',
+        marca: 'Bosch',
+        amount: 150
+    },
+    {
+        id: 2,
+        nome: 'Pneu Aro 16',
+        description: 'Pneu radial para veículos de passeio, medida 205/55 R16.',
+        category: 'Rodas e Pneus',
+        marca: 'Michelin',
+        amount: 60
+    },
+    {
+        id: 3,
+        nome: 'Bateria 60Ah',
+        description: 'Bateria automotiva de 12V com 60Ah, ideal para veículos médios.',
+        category: 'Elétrica',
+        marca: 'Moura',
+        amount: 80
+    },
+    {
+        id: 4,
+        nome: 'Pastilha de Freio Dianteira',
+        description: 'Conjunto de pastilhas para freios a disco dianteiros.',
+        category: 'Freios',
+        marca: 'TRW',
+        amount: 120
+    },
+    {
+        id: 5,
+        nome: 'Amortecedor Traseiro',
+        description: 'Amortecedor hidráulico para suspensão traseira.',
+        category: 'Suspensão',
+        marca: 'Monroe',
+        amount: 95
+    }
+];
 
 export default function Stock() {
     const [newProduct, setNewProduct] = useState(true);
     const [openModal, setOpenModal] = useState(false);
-
-    console.log(newProduct)
 
     return (
         <div className={styles.container}>
@@ -75,7 +144,14 @@ export default function Stock() {
 
 
             <h1>Lista Produtos</h1>
-            <div></div>
+            <div className={styles.datagrid}>
+                <DataGrid
+                    rows={rows}
+                    columns={columns}
+                    sx={{ maxHeight: '270px' }}
+                    hideFooter
+                />
+            </div>
         </div>
     )
 }

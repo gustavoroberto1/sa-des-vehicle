@@ -50,3 +50,9 @@
     flex: 1;
     justify-content: end;
 }
+
+.datagrid {
+    background-color: #ffffff;
+    max-height: 270px;
+    box-sizing: border-box;
+}
