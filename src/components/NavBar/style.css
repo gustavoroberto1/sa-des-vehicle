@@ -21,7 +21,7 @@ overflow: hidden;
     text-decoration: none;
     color: #000;
     padding: 10px;
-    font-size: 30px;
+    font-size: 20px;
     margin-top: 35px;
 }
 .item:hover{
@@ -33,10 +33,15 @@ overflow: hidden;
     margin-left: 10px;
     
 }
+.Avatar h2{
+    color:black
+}
 .Avatar{
     display: flex;
     flex-direction: column;
     text-align: center;
     align-items: center;
     margin-top: 40px;
+    margin-right: 30px;
+    border-bottom: 1px solid grey;
 }

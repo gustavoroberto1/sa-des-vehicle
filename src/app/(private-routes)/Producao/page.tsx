@@ -6,17 +6,21 @@ import "./style.css";
 
 type Vehicle = {
   name: string;
-  type: string;
   year: string;
-  status: string;
+  cor: string;
+  pneu: string;
+  cambio: string;
+  motor: string;
 };
 
 export default function Produção() {
 
-  const [vehicleName, setVehicleName] = useState("");
-  const [vehicleType, setVehicleType] = useState("carro");
-  const [manufactureYear, setManufactureYear] = useState("");
-  const [productionStatus, setProductionStatus] = useState("em_producao");
+  const [nomeVeiculo, setNomeVeiculo] = useState("");
+  const [anoVeiculo, setAnoVeiculo] = useState("");
+  const [corVeiculo, setCorProducaoVeiculo] = useState("Cor");
+  const [pneuVeiculo, setPneuVeiculo] = useState("Cor");
+  const [cambioVeiculo, setCambioVeiculo] = useState("Cor");
+  const [motorVeiculo, setMotorVeiculo] = useState("Cor");
 
 
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);
@@ -24,16 +28,21 @@ export default function Produção() {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     const newVehicle: Vehicle = {
-      name: vehicleName,
-      type: vehicleType,
-      year: manufactureYear,
-      status: productionStatus,
+      name: nomeVeiculo,
+      year: anoVeiculo,
+      cor: corVeiculo,
+      pneu: pneuVeiculo,
+      cambio: cambioVeiculo,
+      motor: motorVeiculo
     };
     setVehicles([...vehicles, newVehicle]);
 
-    setVehicleName("");
-    setManufactureYear("");
-    setProductionStatus("em_producao");
+    setNomeVeiculo("");
+    setAnoVeiculo("");
+    setCorProducaoVeiculo("");
+    setPneuVeiculo("");
+    setCambioVeiculo("");
+    setMotorVeiculo("")
   };
 
   return (
@@ -52,21 +61,11 @@ export default function Produção() {
                 <input
                   type="text"
                   id="name"
-                  value={vehicleName}
-                  onChange={(e) => setVehicleName(e.target.value)}
+                  value={nomeVeiculo}
+                  onChange={(e) => setNomeVeiculo(e.target.value)}
                 />
               </div>
-              <div className="form-group">
-                <label htmlFor="type">Tipo de Veículo</label>
-                <select
-                  value={vehicleType}
-                  onChange={(e) => setVehicleType(e.target.value)}
-                >
-                  <option value="carro">Carro</option>
-                  <option value="moto">Moto</option>
-                  <option value="caminhao">Caminhão</option>
-                </select>
-              </div>
+              
               <div className="form-group">
                 <label htmlFor="year">Ano de Fabricação</label>
                 <input
@@ -76,25 +75,71 @@ export default function Produção() {
                   max="9999"
                   step="1"
                   placeholder="Digite o ano"
-                  value={manufactureYear}
-                  onChange={(e) => setManufactureYear(e.target.value)}
+                  value={anoVeiculo}
+                  onChange={(e) => setAnoVeiculo(e.target.value)}
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="status">Status de Produção</label>
+                <label htmlFor="cor">Cor do Veiculo</label>
                 <select
-                  id="status"
-                  name="status"
-                  value={productionStatus}
-                  onChange={(e) => setProductionStatus(e.target.value)}
+                  id="cor"
+                  name="cor"
+                  value={corVeiculo}
+                  onChange={(e) => setCorProducaoVeiculo(e.target.value)}
                 >
-                  <option value="em_producao">Em Produção</option>
-                  <option value="pronto">Pronto</option>
-                  <option value="entregue">Entregue</option>
+                  <option value=""></option>
+                  <option value="branco">Branco</option>
+                  <option value="preto">Preto</option>
+                  <option value="vermelho">Vermelho</option>
+                  <option value="azul">Azul</option>
+                  <option value="prata">Prata</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label htmlFor="Pneus">Pneus</label>
+                <select
+                  id="pneus"
+                  name="pneu"
+                  value={pneuVeiculo}
+                  onChange={(e) => setPneuVeiculo(e.target.value)}
+                >
+                  <option value=""></option>
+                  <option value="Goodyear">Goodyear</option>
+                  <option value="Pirelli">Pirelli</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label htmlFor="cambio">Cambio</label>
+                <select
+                  id="cambio"
+                  name="cambio"
+                  value={cambioVeiculo}
+                  onChange={(e) => setCambioVeiculo(e.target.value)}
+                >
+                  <option value=""></option>
+                  <option value="manual">Manual</option>
+                  <option value="Automatico">Automatico</option>
+                  <option value="CVT">CVT</option>
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="Motor">motor</label>
+                <select
+                  id="motor"
+                  name="motor"
+                  value={motorVeiculo}
+                  onChange={(e) => setMotorVeiculo(e.target.value)}
+                >
+                  <option value=""></option>
+                  <option value="1.0 turbo">1.0 Turbo</option>
+                  <option value="1.4 turbo">1.4 Turbo</option>
+                  <option value="1.8 flex">1.8 flex</option>
+                  <option value="2.0 flex">2.0 flex</option> 
                 </select>
               </div>
             </div>
-            <button type="submit">Registrar Veículo</button>
+            <button type="submit">Enviar para Produção</button>
           </form>
         </section>
 
@@ -105,9 +150,11 @@ export default function Produção() {
               <tr>
                 <th>id</th>
                 <th>Nome</th>
-                <th>Tipo</th>
                 <th>Ano</th>
-                <th>Status</th>
+                <th>Cor</th>
+                <th>Pneu</th>
+                <th>Câmbio</th>
+                <th>Motor</th>
               </tr>
             </thead>
             <tbody>
@@ -115,9 +162,11 @@ export default function Produção() {
                 <tr key={index}>
                   <td>{index}</td>
                   <td>{vehicle.name}</td>
-                  <td>{vehicle.type}</td>
                   <td>{vehicle.year}</td>
-                  <td>{vehicle.status}</td>
+                  <td>{vehicle.cor}</td>
+                  <td>{vehicle.pneu}</td>
+                  <td>{vehicle.cambio}</td>
+                  <td>{vehicle.motor}</td>
                 </tr>
               ))}
             </tbody>
