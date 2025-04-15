@@ -13,7 +13,7 @@ const columns: GridColDef<(typeof rows)[number]>[] = [
     {
         field: 'nome',
         headerName: 'Nome',
-        width: 300 
+        width: 300
     },
     {
         field: 'description',
@@ -141,7 +141,6 @@ export default function Stock() {
                     </div>
                 </form>
             </div>
-
 
             <h1>Lista Produtos</h1>
             <div className={styles.datagrid}>
