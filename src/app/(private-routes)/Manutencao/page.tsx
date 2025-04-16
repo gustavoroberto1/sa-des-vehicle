@@ -1,6 +1,12 @@
+
+import Cabecalho from '@/components/Cabecalho/pages'
 import './Style.css'
+
+
 export default function Manutenção(){
     return(
-        <h1>Manutenção </h1>
+        <div className="container">
+            <Cabecalho name="Manutenção"/>
+        </div>
     )
 }
