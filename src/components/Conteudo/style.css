@@ -1,0 +1,66 @@
+.conteudo-texto {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #a9a9a9;
+}
+
+.container-conteudo {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    margin-top: 32px;
+}
+
+.container-conteudo .cadastrando {
+    background-color: aquamarine;
+    display: flex;
+    width: 60%;
+    flex-direction: column;
+    padding: 18px;
+    gap: 12px;
+}
+
+.container-conteudo .consultando {
+    background-color: aquamarine;
+    display: flex;
+    width: 60%;
+    flex-direction: column;
+    padding: 18px;
+    gap: 12px;
+}
+
+.container-conteudo h1 {
+    text-align: center;
+    font-size: 32px;
+    font-family: 'Times New Roman', Times, serif;
+    border-bottom: 1px solid black;
+}
+
+.container-conteudo h2 {
+    margin-left: 12px;
+    font-size: 22px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.container-conteudo input {
+    height: 32px;
+    border-radius: 6px;
+    border: 1px solid #A9A9A9;
+}
+
+.container-conteudo input::placeholder {
+    color: #A9A9A9;
+    padding: 8px;
+}
+
+.container-conteudo button {
+    background-color: rgb(129, 114, 114);
+    width: 100%;
+    height: 42px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid;
+}
