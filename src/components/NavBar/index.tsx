@@ -48,7 +48,7 @@ export default function NavBar() {
     ];
 
     return (
-        <div className="container">
+        <div className="container-navbar">
             <div className="content">
                 <div className="Avatar">
                 <FaRegUserCircle size={140} />

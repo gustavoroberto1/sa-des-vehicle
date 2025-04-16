@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import "./style.css";
+import Cabecalho from "@/components/Cabecalho/pages";
 
 
 type Vehicle = {
@@ -47,10 +48,7 @@ export default function Produção() {
 
   return (
     <div className="Container">
-      <header>
-        <h1>Produção de Veículos</h1>
-      </header>
-
+     <Cabecalho name=" Produção"/>
       <main>
         <section>
           <h2>Registrar Novo Veículo</h2>
