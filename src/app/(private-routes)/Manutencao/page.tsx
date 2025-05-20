@@ -1,12 +1,11 @@
-
 import Cabecalho from '@/components/Cabecalho/pages'
 import './Style.css'
 
 
-export default function Manutenção(){
-    return(
+export default function Manutenção() {
+    return (
         <div className="container">
-            <Cabecalho name="Manutenção"/>
+            <Cabecalho name="Manutenção" />
         </div>
     )
 }

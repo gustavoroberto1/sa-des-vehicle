@@ -15,7 +15,6 @@
 }
 
 .container-conteudo .cadastrando {
-    background-color: aquamarine;
     display: flex;
     width: 60%;
     flex-direction: column;
@@ -24,7 +23,6 @@
 }
 
 .container-conteudo .consultando {
-    background-color: aquamarine;
     display: flex;
     width: 60%;
     flex-direction: column;

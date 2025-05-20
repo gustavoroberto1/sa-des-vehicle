@@ -27,15 +27,15 @@ export default function RenderConteudo() {
                         <div className='cadastrando'>
                             <h1>Cadastro de items</h1>
                             <h2>Item</h2>
-                            <input type="text" id='' placeholder='Digite o nome do item'/>
+                            <input type="text" id='' placeholder='Digite o nome do item' />
                             <h2>Marca</h2>
-                            <input type="text" id='' placeholder='Digite a marca'/>
+                            <input type="text" id='' placeholder='Digite a marca' />
                             <h2>Quatidade</h2>
-                            <input type="text" id='' placeholder='Digite a quantidade'/>
+                            <input type="text" id='' placeholder='Digite a quantidade' />
                             <h2>Codigo</h2>
-                            <input type="text" id='' placeholder='Digite o codigo interno'/>
-                        
-                        <button><MdAdd /> Cadastrar</button>
+                            <input type="text" id='' placeholder='Digite o codigo interno' />
+
+                            <button><MdAdd /> Cadastrar</button>
                         </div>
 
                     ) : (
@@ -43,9 +43,9 @@ export default function RenderConteudo() {
                         <div className='consultando'>
                             <h1>Consulta de items</h1>
                             <h2>Item</h2>
-                            <input type="text" id='' placeholder='Digite o nome do item'/>
+                            <input type="text" id='' placeholder='Digite o nome do item' />
                             <h2>Codigo</h2>
-                            <input type="text" id='' placeholder='Digite o codigo interno'/>
+                            <input type="text" id='' placeholder='Digite o codigo interno' />
 
                             <button><BiSearch size={16} /> Consultar</button>
                         </div>

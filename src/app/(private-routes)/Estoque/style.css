@@ -36,8 +36,9 @@
     color: white;
 }
 
-.conteudo .header button:hover { 
-    background-color: #A9A9A9;;
+.conteudo .header button:hover {
+    background-color: #A9A9A9;
+    ;
     color: black;
 }
 
@@ -46,11 +47,10 @@
     justify-content: center;
     background-color: red;
     width: 100%;
-   
+
 }
 
 .container-conteudo {
     width: 100%;
-    background-color: blue;
+    background-color: white;
 }
-

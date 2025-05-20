@@ -1,41 +1,73 @@
-'use client'
+'use client';
 
-import { useState } from "react"
-import styles from './styles.module.css';
+import { useState } from "react";
+import estilos from './styles.module.css';
 import Cabecalho from "@/components/Cabecalho/pages";
 
+type StatusVeiculo = 'aprovado' | 'reprovado';
 
+interface Veiculo {
+    id: string;
+    modelo: string;
+    dataProducao: string;
+    status: StatusVeiculo;
+}
 
-    export default function Quality() {
-        const [tab, setTab] = useState<'all' | 'approved' | 'failed'>('all');
-        <div className="Container">
-      <header>
-        <h1>Qualidade</h1>
-      </header>
+const listaVeiculos: Veiculo[] = [
+    { id: 'V001', modelo: 'SUV Z5', dataProducao: '2025-05-16', status: 'aprovado' },
+    { id: 'V002', modelo: 'Sedan X1', dataProducao: '2025-05-15', status: 'reprovado' },
+    { id: 'V003', modelo: 'Hatch G3', dataProducao: '2025-05-15', status: 'aprovado' },
+    { id: 'V004', modelo: 'Crossover A2', dataProducao: '2025-05-14', status: 'reprovado' },
+];
 
-    </div>
-    
-        return (
-          
-            <div className={styles.container}>
-                <Cabecalho name="Qualidade"/>
-                <div className={styles.tabs}>
-                    <div onClick={() => setTab("all")} className={`${styles.tab} ${tab === 'all' && styles.tabSelected}`}>Todos</div>
-                    <div onClick={() => setTab("approved")} className={`${styles.tab} ${tab === 'approved' && styles.tabSelected}`}>Aprovados</div>
-                    <div onClick={() => setTab("failed")} className={`${styles.tab} ${tab === 'failed' && styles.tabSelected}`}>Reprovados</div>
+export default function Qualidade() {
+    const [abaSelecionada, setAbaSelecionada] = useState<'todos' | 'aprovado' | 'reprovado'>('todos');
+
+    const veiculosFiltrados = abaSelecionada === 'todos'
+        ? listaVeiculos
+        : listaVeiculos.filter(v => v.status === abaSelecionada);
+
+    return (
+        <div className={estilos.container}>
+            <Cabecalho name="Qualidade" />
+
+            <div className={estilos.abas}>
+                <div
+                    onClick={() => setAbaSelecionada("todos")}
+                    className={`${estilos.aba} ${abaSelecionada === 'todos' && estilos.abaSelecionada}`}
+                >
+                    Todos
                 </div>
-    
-                <div className={styles.content}>
-                    {tab === "all" ? (
-                        <h1>Todas Avaliações</h1>
-                    ): tab === "approved" ? (
-                        <h1>Avaliaçãoes Aprovadas</h1>
-                    ): (
-                        <h1>Avaliações Reprovados</h1>
-                    )}
+                <div
+                    onClick={() => setAbaSelecionada("aprovado")}
+                    className={`${estilos.aba} ${abaSelecionada === 'aprovado' && estilos.abaSelecionada}`}
+                >
+                    Aprovados
+                </div>
+                <div
+                    onClick={() => setAbaSelecionada("reprovado")}
+                    className={`${estilos.aba} ${abaSelecionada === 'reprovado' && estilos.abaSelecionada}`}
+                >
+                    Reprovados
                 </div>
             </div>
-    
-    
-        )
-    }
+
+            <div className={estilos.conteudo}>
+                {veiculosFiltrados.length === 0 ? (
+                    <p>Nenhum veículo encontrado.</p>
+                ) : (
+                    <ul className={estilos.listaVeiculos}>
+                        {veiculosFiltrados.map((veiculo) => (
+                            <li key={veiculo.id} className={estilos.itemVeiculo}>
+                                <strong>{veiculo.modelo}</strong> — {veiculo.dataProducao} —
+                                <span className={veiculo.status === 'aprovado' ? estilos.aprovado : estilos.reprovado}>
+                                    {veiculo.status === 'aprovado' ? 'Aprovado' : 'Reprovado'}
+                                </span>
+                            </li>
+                        ))}
+                    </ul>
+                )}
+            </div>
+        </div>
+    );
+}

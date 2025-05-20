@@ -1,61 +1,55 @@
-
-  .container {
-    width: 100vw;
-    height: 100vh;
-    margin: 20px auto;
-    background-color: white;
-    padding: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-
-
-.content {
-    background-color: #ffffff;
-    width: 100%;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
-    border-radius: 10px;
-    padding: 20px 40px;
-    margin-bottom: 16px;
-    color: black;
+.container {
+    padding: 2rem;
 }
 
-.tabs {
-    margin-top: 10px;
+.abas {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: start;
-    gap: 16px   ;
-    margin-bottom: 16px;
+    gap: 1rem;
+    margin-bottom: 1rem;
 }
 
-.tab {
-    width: 200px;
-    padding: 10px 20px;
-    background-color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+.aba {
+    padding: 0.5rem 1rem;
+    background: #eee;
     cursor: pointer;
-    font-size: 18px;
-    font-weight: bold;
-    border: 1px solid #ffffff;
+    border-radius: 6px;
+    transition: background 0.3s;
 }
 
-.tab:hover {
-    border: 1px solid #e2452f;
+.aba:hover {
+    background: #ddd;
 }
 
-.tabSelected {
-    border: 1px solid #e2452f;
-    background-color: #e2452f;
+.abaSelecionada {
+    background: #007bff;
     color: white;
 }
 
-.tabSelected:hover {
-    opacity: 1;
-    background-color: #e2452f;
-    border: 1px solid #e2452f;
+.conteudo {
+    background: #fafafa;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.listaVeiculos {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.itemVeiculo {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.aprovado {
+    color: green;
+    margin-left: 0.5rem;
+    font-weight: bold;
+}
+
+.reprovado {
+    color: red;
+    margin-left: 0.5rem;
+    font-weight: bold;
 }
