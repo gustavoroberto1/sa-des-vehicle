@@ -2,16 +2,17 @@
 
 import { TextField, Checkbox, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import styles from './styles.module.css';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AddCircleOutline } from '@mui/icons-material';
 import { ButtonForm } from '@/components/ButtonForm';
 import { ModalNewMarca } from '@/components/ModalNewMarca';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { API } from '@/service/api';
 
 const columns: GridColDef<(typeof rows)[number]>[] = [
     { field: 'id', headerName: 'ID' },
     {
-        field: 'nome',
+        field: 'name',
         headerName: 'Nome',
         width: 300
     },
@@ -25,7 +26,7 @@ const columns: GridColDef<(typeof rows)[number]>[] = [
         headerName: 'Categoria',
     },
     {
-        field: 'marca',
+        field: 'mark',
         headerName: 'Marca',
     },
     {
@@ -79,16 +80,99 @@ const rows = [
 ];
 
 export default function Stock() {
+    const [isLoading, setIsLoading] = useState(false);
     const [newProduct, setNewProduct] = useState(true);
     const [openModal, setOpenModal] = useState(false);
+    const [products, setProducts] = useState<Product[]>([]);
+    const [marks, setMarks] = useState<Mark[]>([])
 
+    const [name, setName] = useState<String>("");
+    const [description, setDescription] = useState<String>("");
+    const [category, setCategory] = useState<String>("");
+    const [amount, setAmount] = useState<Number>(0);
+    const [markId, setMarkId] = useState<String>("");
+
+    const [productId, setProductId] = useState<String>("");
+
+    useEffect(() => {
+        setIsLoading(true);
+        loadProducts();
+        loadMarks();
+        setIsLoading(false);
+    }, [])
+
+    async function loadProducts() {
+        try {
+            const response = await API.get<Product[]>("/product");
+            setProducts(response.data)
+        } catch (errr: any) {
+            console.log("EROOOu")
+        }
+    }
+
+    async function loadMarks() {
+        try {
+            const response = await API.get<Mark[]>("/mark");
+            setMarks(response.data)
+        } catch (errr: any) {
+            console.log("EROOOu")
+        }
+    }
+
+    async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault()
+
+        if (newProduct) {
+            const newProduct = {
+                name,
+                description,
+                category,
+                amount: Number(amount),
+                markId,
+            }
+
+            try {
+                await API.post("/product", newProduct);
+                resetValues()
+                loadProducts();
+            } catch (errr: any) {
+                console.log("EROOOu")
+            } finally {
+                return
+            }
+        }
+
+        const updateProduct = {
+            productId: productId,
+            amount: Number(amount)
+        }
+
+        try {
+            await API.patch("/product", updateProduct);
+            resetValues()
+            loadProducts();
+        } catch (errr: any) {
+            console.log("EROOOu")
+        } finally {
+            return
+        }
+    }
+
+    function resetValues() {
+        setName("")
+        setAmount(0)
+        setDescription("")
+        setCategory("")
+        setMarkId("")
+        setProductId("")
+    }
     return (
         <div className={styles.container}>
-            <ModalNewMarca open={openModal} handleClose={() => setOpenModal(!openModal)} />
+            <ModalNewMarca open={openModal} handleClose={() => setOpenModal(!openModal)} loadMarks={loadMarks}/>
             <h1>Estoque</h1>
             <div className={styles.content}>
                 <h2>Entrada de produtos</h2>
-                <form className={styles.form}>
+                <form className={styles.form} onSubmit={handleSubmit}>
                     <div className={styles.selectRegister}>
                         <span>Produto Novo?</span>
                         <Checkbox checked={newProduct} onChange={(e) => setNewProduct(e.target.checked)} />
@@ -98,40 +182,78 @@ export default function Stock() {
                         <div className={styles.selectProduct}>
                             <FormControl fullWidth>
                                 <InputLabel>Selecione o produto</InputLabel>
-                                <Select label="Produtos">
-                                    <MenuItem value={10}>Pneu - Pirelli</MenuItem>
-                                    <MenuItem value={20}>Pneu - Goodyear</MenuItem>
+                                <Select
+                                    label="Produtos"
+                                    value={productId}
+                                    onChange={e => setProductId(e.target.value)}
+                                >
+                                    {
+                                        products.map(product => (
+                                            <MenuItem key={product.id} value={product.id}>{product.name}</MenuItem>
+                                        ))
+                                    }
                                 </Select>
                             </FormControl>
-                            <TextField label="Quantidade" variant="outlined" type='number' />
+                            <TextField
+                                label="Quantidade"
+                                variant="outlined"
+                                type='number'
+                                value={amount}
+                                onChange={e => setAmount(e.target.value as any)}
+                            />
                         </div>
 
                     ) : (
                         <div>
                             <div className={styles.formSeparetor}>
-                                <TextField label="Nome do Produto" variant="outlined" sx={{ width: '30%' }} />
+                                <TextField
+                                    label="Nome do Produto"
+                                    variant="outlined"
+                                    sx={{ width: '30%' }}
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                />
 
-                                <TextField label="Descrição" variant="outlined" sx={{ width: '70%' }} />
+                                <TextField
+                                    label="Descrição"
+                                    variant="outlined"
+                                    sx={{ width: '70%' }}
+                                    value={description}
+                                    onChange={(e) => setDescription(e.target.value)}
+                                />
                             </div>
                             <div className={styles.formSeparetor}>
-                                <FormControl sx={{ width: '20%' }}>
+                                <FormControl sx={{ width: '20%' }} >
                                     <InputLabel>Selecione a Categoria</InputLabel>
-                                    <Select label="Selecione a Categoria">
-                                        <MenuItem value={10}>Mecânico</MenuItem>
-                                        <MenuItem value={20}>Elétrico</MenuItem>
+                                    <Select
+                                        label="Selecione a Categoria"
+                                        onChange={e => setCategory(e.target.value as any || "")}
+                                        value={category}
+                                    >
+                                        <MenuItem value={''}>Selecione</MenuItem>
+                                        <MenuItem value={'Mecânico'}>Mecânico</MenuItem>
+                                        <MenuItem value={'Elétrico'}>Elétrico</MenuItem>
+                                        <MenuItem value={'Pneus'}>Pneus</MenuItem>
                                     </Select>
                                 </FormControl>
                                 <FormControl sx={{ width: '60%' }}>
                                     <InputLabel>Selecione a Marca</InputLabel>
-                                    <Select label="Selecione a Marca">
-                                        <MenuItem value={10}>Bosch</MenuItem>
-                                        <MenuItem value={20}>BlaBlaBla</MenuItem>
+                                    <Select label="Selecione a Marca" onChange={e => setMarkId(e.target.value as any)} value={markId}>
+                                        {!!marks && marks?.map(mark => (
+                                            <MenuItem key={mark.id} value={mark.id}>{mark.name}</MenuItem>
+                                        ))}
                                     </Select>
                                 </FormControl>
                                 <div className={styles.buttonAdd} onClick={() => setOpenModal(true)}>
                                     <AddCircleOutline />
                                 </div>
-                                <TextField label="Quantidade" variant="outlined" type='number' />
+                                <TextField
+                                    label="Quantidade"
+                                    variant="outlined"
+                                    type='number'
+                                    value={amount}
+                                    onChange={e => setAmount(e.target.value as any)}
+                                />
                             </div>
 
                         </div>
@@ -145,8 +267,8 @@ export default function Stock() {
             <h1>Lista Produtos</h1>
             <div className={styles.datagrid}>
                 <DataGrid
-                    rows={rows}
-                    columns={columns}
+                    rows={products}
+                    columns={columns as any}
                     sx={{ maxHeight: '270px' }}
                     hideFooter
                 />
