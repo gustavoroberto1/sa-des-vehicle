@@ -1,23 +1,22 @@
-
 header {
   display: flex;
-   background-color: #363636;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    margin-bottom: 20px;
-    width: 80vw;
-  }
- 
+  background-color: #5c5a5a;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+  width: 80vw;
+}
 
-header h1{
+
+header h1 {
   display: flex;
   color: white;
-  margin-left: 500px;
-  }
+  margin-left: 600px;
+}
 
- .cabecalho-div{
+.cabecalho-div {
   width: 100vw;
   margin-top: 2rem;
   padding: 20px;
- }
+}

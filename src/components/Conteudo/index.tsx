@@ -25,7 +25,7 @@ export default function RenderConteudo() {
                 {
                     tab === 'register' ? (
                         <div className='cadastrando'>
-                            <h1>Cadastro de items</h1>
+                            <h1>Cadastro de itens</h1>
                             <h2>Item</h2>
                             <input type="text" id='' placeholder='Digite o nome do item' />
                             <h2>Marca</h2>
@@ -41,7 +41,7 @@ export default function RenderConteudo() {
                     ) : (
 
                         <div className='consultando'>
-                            <h1>Consulta de items</h1>
+                            <h1>Consulta de itens</h1>
                             <h2>Item</h2>
                             <input type="text" id='' placeholder='Digite o nome do item' />
                             <h2>Codigo</h2>
