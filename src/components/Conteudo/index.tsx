@@ -13,9 +13,7 @@ export default function RenderConteudo() {
         <div className="conteudo">
             <header className="header">
                 <div className="cadastrar">
-
                     <button onClick={() => setTab('register')} ><MdAdd /> Cadastrar</button>
-
                 </div>
                 <div className="consultar">
                     <button onClick={() => setTab('query')} ><BiSearch size={20} /> Consultar</button>
@@ -32,10 +30,8 @@ export default function RenderConteudo() {
                             <input type="text" id='' placeholder='Digite a marca' />
                             <h2>Quatidade</h2>
                             <input type="text" id='' placeholder='Digite a quantidade' />
-                            <h2>Codigo</h2>
-                            <input type="text" id='' placeholder='Digite o codigo interno' />
 
-                            <button><MdAdd /> Cadastrar</button>
+                            <button className='button-manda-dados'><MdAdd /> Cadastrar</button>
                         </div>
 
                     ) : (
@@ -47,7 +43,7 @@ export default function RenderConteudo() {
                             <h2>Codigo</h2>
                             <input type="text" id='' placeholder='Digite o codigo interno' />
 
-                            <button><BiSearch size={16} /> Consultar</button>
+                            <button className='button-manda-dados'><BiSearch size={16} /> Consultar</button>
                         </div>
                     )
                 }

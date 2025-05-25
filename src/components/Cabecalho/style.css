@@ -8,15 +8,15 @@ header {
   width: 80vw;
 }
 
-
 header h1 {
   display: flex;
   color: white;
-  margin-left: 600px;
+  width: 100%;
+  justify-content: center;
 }
 
 .cabecalho-div {
   width: 100vw;
-  margin-top: 2rem;
-  padding: 20px;
+  padding: 12px;
+  margin-bottom: -12px;
 }

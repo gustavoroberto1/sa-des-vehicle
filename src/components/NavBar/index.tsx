@@ -16,7 +16,7 @@ export default function NavBar() {
     const itens = [
         {
             label: "Home",
-            page: '/dashboard',
+            page: '/Home',
             icon: <FaHome />
         },
         {
