@@ -9,8 +9,9 @@ body {
 
 }
 
-.Container {
-  width: 100vw;
+.Container-producao {
+  min-width: 900px;
+  max-width: 90%;
   height: 100vh;
   margin: 20px auto;
   background-color: white;
@@ -72,9 +73,7 @@ button:hover {
 .vehicle-list {
   margin-top: 40px;
   max-height: 300px;
-  /* define a altura máxima */
   overflow-y: auto;
-  /* scroll interno */
   border: 1px solid #ddd;
 }
 

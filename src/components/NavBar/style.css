@@ -2,14 +2,17 @@
 margin: 0;
 padding: 0;
 box-sizing: border-box;
-overflow: hidden;
-
 }
+
 .content{
     background-color:#5c5a5a;
+    position: sticky;
+    top: 0;
+    left: 0;
     display: flex;
     flex-direction: column;
-    width: 280px;
+    width: 230px;
+    max-width: 235px;
     height: 100vh;
     justify-content: end;
     padding-bottom: 60px;
@@ -27,15 +30,17 @@ overflow: hidden;
 .item:hover{
     background-color: #A9A9A9;
     color: white;
-  
 }
+
 .item span {
     margin-left: 10px;
-    
 }
+
 .Avatar h2{
-    color:black
+    color:black;
+    margin-top: 16px;
 }
+
 .Avatar{
     display: flex;
     flex-direction: column;

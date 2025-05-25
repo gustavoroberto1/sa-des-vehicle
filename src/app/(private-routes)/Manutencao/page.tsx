@@ -5,8 +5,8 @@ export default function Manutenção() {
   return (
     <div>
       <Cabecalho name="Manutenção" />
-      <div className="container">
-        
+      <div className="container-manutencao">
+        <h1>Manutencao de veiculos da Velocis</h1>
       </div>
     </div>
   );

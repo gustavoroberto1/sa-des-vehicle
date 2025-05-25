@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import { useEffect, useState, useRef } from "react";
 import "./style.css";
@@ -80,7 +80,7 @@ export default function Producao() {
   return (
     <div>
       <Cabecalho name="Produção" />
-      <div className="Container">
+      <div className="Container-producao">
         <main>
           <section>
             <h2>Registrar Novo Veículo</h2>
