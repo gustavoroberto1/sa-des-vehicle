@@ -34,7 +34,7 @@ export default function Producao() {
     };
     setVehicles([...productionFromApi, newVehicle]);
 
-    // Limpar os campos
+
     setNomeVeiculo("");
     setCorProducaoVeiculo("");
     setPneuVeiculo("");
@@ -43,7 +43,14 @@ export default function Producao() {
   };
 
   async function creatVeiculo() {
-    console.log(nomeVeiculo, motorVeiculo)
+
+    try {
+      const response = await API.post('/veiculos')
+      const data = response.data
+      console.log(data)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   async function getProduction() {

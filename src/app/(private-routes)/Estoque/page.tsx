@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+
 import "./style.css";
 import RenderConteudo from "@/components/Conteudo";
 import Cabecalho from "@/components/Cabecalho/pages";
