@@ -1,51 +1,85 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import "./style.css";
 import Cabecalho from "@/components/Cabecalho/pages";
+import { API } from "@/services/api";
 
-type Vehicle = {
-  name: string;
-  year: string;
+type veiculo = {
+  modelo: string;
   cor: string;
   pneu: string;
   cambio: string;
   motor: string;
 };
 
-export default function Produção() {
+export default function Producao() {
   const [nomeVeiculo, setNomeVeiculo] = useState("");
-  const [anoVeiculo, setAnoVeiculo] = useState("");
-  const [corVeiculo, setCorProducaoVeiculo] = useState("Cor");
-  const [pneuVeiculo, setPneuVeiculo] = useState("Cor");
-  const [cambioVeiculo, setCambioVeiculo] = useState("Cor");
-  const [motorVeiculo, setMotorVeiculo] = useState("Cor");
+  const [corVeiculo, setCorProducaoVeiculo] = useState("");
+  const [pneuVeiculo, setPneuVeiculo] = useState("");
+  const [cambioVeiculo, setCambioVeiculo] = useState("");
+  const [motorVeiculo, setMotorVeiculo] = useState("");
+  //----------------------------------------------------------//
 
-  const [vehicles, setVehicles] = useState<Vehicle[]>([]);
+  const [productionFromApi, setVehicles] = useState<veiculo[]>([]);
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const newVehicle: Vehicle = {
-      name: nomeVeiculo,
-      year: anoVeiculo,
+    const newVehicle: veiculo = {
+      modelo: nomeVeiculo,
       cor: corVeiculo,
       pneu: pneuVeiculo,
       cambio: cambioVeiculo,
       motor: motorVeiculo,
     };
-    setVehicles([...vehicles, newVehicle]);
+    setVehicles([...productionFromApi, newVehicle]);
 
+    // Limpar os campos
     setNomeVeiculo("");
-    setAnoVeiculo("");
     setCorProducaoVeiculo("");
     setPneuVeiculo("");
     setCambioVeiculo("");
     setMotorVeiculo("");
   };
 
+  async function creatVeiculo() {
+    console.log(nomeVeiculo, motorVeiculo)
+  }
+
+  async function getProduction() {
+    try {
+      const response = await API.get("/veiculos");
+      const data = response.data;
+
+      const veiculosTratados = data.map((item: any) => {
+        const estoqueMap: Record<string, string> = {};
+
+        item.Veiculo_Estoque.forEach((e: any) => {
+          estoqueMap[e.estoque.descricao.toLowerCase()] = e.estoque.marca;
+        });
+
+        return {
+          modelo: item.modelo,
+          cor: item.cor,
+          pneu: estoqueMap["pneu"] || "",
+          cambio: estoqueMap["cambio"] || "",
+          motor: estoqueMap["motor"] || ""
+        };
+      });
+
+      setVehicles(veiculosTratados);
+    } catch (error) {
+      console.error("Erro ao buscar veículos:", error);
+    }
+  }
+
+  useEffect(() => {
+    getProduction();
+  }, []);
+
   return (
     <div>
-      <Cabecalho name=" Produção" />
+      <Cabecalho name="Produção" />
       <div className="Container">
         <main>
           <section>
@@ -63,27 +97,14 @@ export default function Produção() {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="year">Ano de Fabricação</label>
-                  <input
-                    type="number"
-                    name="ano"
-                    min="1900"
-                    max="9999"
-                    step="1"
-                    placeholder="Digite o ano"
-                    value={anoVeiculo}
-                    onChange={(e) => setAnoVeiculo(e.target.value)}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="cor">Cor do Veiculo</label>
+                  <label htmlFor="cor">Cor do Veículo</label>
                   <select
                     id="cor"
                     name="cor"
                     value={corVeiculo}
                     onChange={(e) => setCorProducaoVeiculo(e.target.value)}
                   >
-                    <option value=""></option>
+                    <option value="">Selecione</option>
                     <option value="branco">Branco</option>
                     <option value="preto">Preto</option>
                     <option value="vermelho">Vermelho</option>
@@ -91,51 +112,54 @@ export default function Produção() {
                     <option value="prata">Prata</option>
                   </select>
                 </div>
+
                 <div className="form-group">
-                  <label htmlFor="Pneus">Pneus</label>
+                  <label htmlFor="pneus">Pneus</label>
                   <select
                     id="pneus"
                     name="pneu"
                     value={pneuVeiculo}
                     onChange={(e) => setPneuVeiculo(e.target.value)}
                   >
-                    <option value=""></option>
+                    <option value="">Selecione</option>
                     <option value="Goodyear">Goodyear</option>
                     <option value="Pirelli">Pirelli</option>
                   </select>
                 </div>
+
                 <div className="form-group">
-                  <label htmlFor="cambio">Cambio</label>
+                  <label htmlFor="cambio">Câmbio</label>
                   <select
                     id="cambio"
                     name="cambio"
                     value={cambioVeiculo}
                     onChange={(e) => setCambioVeiculo(e.target.value)}
                   >
-                    <option value=""></option>
+                    <option value="">Selecione</option>
                     <option value="manual">Manual</option>
-                    <option value="Automatico">Automatico</option>
+                    <option value="automatico">Automático</option>
                     <option value="CVT">CVT</option>
                   </select>
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="Motor">motor</label>
+                  <label htmlFor="motor">Motor</label>
                   <select
                     id="motor"
                     name="motor"
                     value={motorVeiculo}
                     onChange={(e) => setMotorVeiculo(e.target.value)}
                   >
-                    <option value=""></option>
+                    <option value="">Selecione</option>
                     <option value="1.0 turbo">1.0 Turbo</option>
                     <option value="1.4 turbo">1.4 Turbo</option>
-                    <option value="1.8 flex">1.8 flex</option>
-                    <option value="2.0 flex">2.0 flex</option>
+                    <option value="1.8 flex">1.8 Flex</option>
+                    <option value="2.0 flex">2.0 Flex</option>
                   </select>
                 </div>
               </div>
-              <button type="submit">Enviar para Produção</button>
+
+              <button type="submit" onClick={creatVeiculo}>Enviar para Produção</button>
             </form>
           </section>
 
@@ -144,9 +168,8 @@ export default function Produção() {
             <table>
               <thead>
                 <tr>
-                  <th>id</th>
+                  <th>#</th>
                   <th>Nome</th>
-                  <th>Ano</th>
                   <th>Cor</th>
                   <th>Pneu</th>
                   <th>Câmbio</th>
@@ -154,15 +177,14 @@ export default function Produção() {
                 </tr>
               </thead>
               <tbody>
-                {vehicles.map((vehicle, index) => (
+                {productionFromApi.map((veiculo, index) => (
                   <tr key={index}>
-                    <td>{index}</td>
-                    <td>{vehicle.name}</td>
-                    <td>{vehicle.year}</td>
-                    <td>{vehicle.cor}</td>
-                    <td>{vehicle.pneu}</td>
-                    <td>{vehicle.cambio}</td>
-                    <td>{vehicle.motor}</td>
+                    <td>{index + 1}</td>
+                    <td>{veiculo.modelo}</td>
+                    <td>{veiculo.cor}</td>
+                    <td>{veiculo.pneu}</td>
+                    <td>{veiculo.cambio}</td>
+                    <td>{veiculo.motor}</td>
                   </tr>
                 ))}
               </tbody>

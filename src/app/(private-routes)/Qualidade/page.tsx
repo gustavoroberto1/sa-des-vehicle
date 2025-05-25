@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import estilos from "./styles.module.css";
 import Cabecalho from "@/components/Cabecalho/pages";
+import { API } from "@/services/api";
 
 type StatusVeiculo = "aprovado" | "reprovado";
 
@@ -13,72 +14,51 @@ interface Veiculo {
   status: StatusVeiculo;
 }
 
-const listaVeiculos: Veiculo[] = [
-  {
-    id: "V001",
-    modelo: "SUV Z5",
-    dataProducao: "2025-05-16",
-    status: "aprovado",
-  },
-  {
-    id: "V002",
-    modelo: "Sedan X1",
-    dataProducao: "2025-05-15",
-    status: "reprovado",
-  },
-  {
-    id: "V003",
-    modelo: "Hatch G3",
-    dataProducao: "2025-05-15",
-    status: "aprovado",
-  },
-  {
-    id: "V004",
-    modelo: "Crossover A2",
-    dataProducao: "2025-05-14",
-    status: "reprovado",
-  },
-];
-
 export default function Qualidade() {
-  const [abaSelecionada, setAbaSelecionada] = useState<
-    "todos" | "aprovado" | "reprovado"
-  >("todos");
+  const [veiculos, setVeiculos] = useState<Veiculo[]>([]);
+  const [abaSelecionada, setAbaSelecionada] = useState<"todos" | "aprovado" | "reprovado">("todos");
+
+  useEffect(() => {
+    async function getVeiculos() {
+      try {
+        const response = await API.get("/veiculos");
+        const data = response.data;
+
+        const veiculosTratados: Veiculo[] = data.map((v: any) => ({
+          id: v.id,
+          modelo: v.modelo,
+          dataProducao: new Date(v.createdAt).toISOString().split("T")[0],
+          status: v.aprovado ? "aprovado" : "reprovado",
+        }));
+
+        setVeiculos(veiculosTratados);
+      } catch (error) {
+        console.error("Erro ao buscar veículos:", error);
+      }
+    }
+
+    getVeiculos();
+  }, []);
 
   const veiculosFiltrados =
     abaSelecionada === "todos"
-      ? listaVeiculos
-      : listaVeiculos.filter((v) => v.status === abaSelecionada);
+      ? veiculos
+      : veiculos.filter((v) => v.status === abaSelecionada);
 
   return (
     <div>
       <Cabecalho name="Qualidade" />
       <div className={estilos.container}>
         <div className={estilos.abas}>
-          <div
-            onClick={() => setAbaSelecionada("todos")}
-            className={`${estilos.aba} ${
-              abaSelecionada === "todos" && estilos.abaSelecionada
-            }`}
-          >
-            Todos
-          </div>
-          <div
-            onClick={() => setAbaSelecionada("aprovado")}
-            className={`${estilos.aba} ${
-              abaSelecionada === "aprovado" && estilos.abaSelecionada
-            }`}
-          >
-            Aprovados
-          </div>
-          <div
-            onClick={() => setAbaSelecionada("reprovado")}
-            className={`${estilos.aba} ${
-              abaSelecionada === "reprovado" && estilos.abaSelecionada
-            }`}
-          >
-            Reprovados
-          </div>
+          {["todos", "aprovado", "reprovado"].map((tipo) => (
+            <div
+              key={tipo}
+              onClick={() => setAbaSelecionada(tipo as typeof abaSelecionada)}
+              className={`${estilos.aba} ${abaSelecionada === tipo && estilos.abaSelecionada}`}
+            >
+              {tipo.charAt(0).toUpperCase() + tipo.slice(1)}
+            </div>
+          ))}
         </div>
 
         <div className={estilos.conteudo}>
@@ -88,7 +68,7 @@ export default function Qualidade() {
             <ul className={estilos.listaVeiculos}>
               {veiculosFiltrados.map((veiculo) => (
                 <li key={veiculo.id} className={estilos.itemVeiculo}>
-                  <strong>{veiculo.modelo}</strong> — {veiculo.dataProducao} —
+                  <strong>{veiculo.modelo}</strong> — {veiculo.dataProducao} —{" "}
                   <span
                     className={
                       veiculo.status === "aprovado"
