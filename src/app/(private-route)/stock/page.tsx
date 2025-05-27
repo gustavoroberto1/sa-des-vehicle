@@ -168,7 +168,7 @@ export default function Stock() {
     }
     return (
         <div className={styles.container}>
-            <ModalNewMarca open={openModal} handleClose={() => setOpenModal(!openModal)} loadMarks={loadMarks}/>
+            <ModalNewMarca open={openModal} handleClose={() => setOpenModal(!openModal)} loadMarks={loadMarks} />
             <h1>Estoque</h1>
             <div className={styles.content}>
                 <h2>Entrada de produtos</h2>
@@ -230,10 +230,11 @@ export default function Stock() {
                                         onChange={e => setCategory(e.target.value as any || "")}
                                         value={category}
                                     >
-                                        <MenuItem value={''}>Selecione</MenuItem>
-                                        <MenuItem value={'Mecânico'}>Mecânico</MenuItem>
+                                        <MenuItem value={'Motor'}>Motor</MenuItem>
+                                        <MenuItem value={'Pneu'}>Pneu</MenuItem>
                                         <MenuItem value={'Elétrico'}>Elétrico</MenuItem>
-                                        <MenuItem value={'Pneus'}>Pneus</MenuItem>
+                                        <MenuItem value={'Acessórios'}>Acessórios</MenuItem>
+                                        <MenuItem value={'Outros'}>Outros</MenuItem>
                                     </Select>
                                 </FormControl>
                                 <FormControl sx={{ width: '60%' }}>

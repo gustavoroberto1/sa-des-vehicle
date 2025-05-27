@@ -2,7 +2,7 @@ import styles from "./styles.module.css"
 
 type ButtonProps = {
     text: string;
-    handle: () => void;
+    handle: any;
     disabled?: boolean;
 }
 

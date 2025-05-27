@@ -5,16 +5,82 @@ import { ButtonForm } from '@/components/ButtonForm';
 import styles from './styles.module.css';
 import { FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import { AddCircleOutline } from '@mui/icons-material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SelectOptional from '@/components/SelectOptional';
 import { ModalNewModel } from '@/components/ModalNewModel';
+import { API } from '@/service/api';
 
-const columns: GridColDef<(typeof rows)[number]>[] = [
-   
-        { field: 'id', headerName: 'ID' },
-    { field: 'model',
+
+
+export default function Production() {
+    const [openModal, setOpenModal] = useState<boolean>(false);
+    const [models, setModels] = useState<Model[]>([]);
+    const [productions, setProductions] = useState<Production[]>([]);
+
+    const [modelId, setModelId] = useState<string>("");
+    const [color, setColor] = useState<string>("");
+    const [amount, setAmount] = useState<number>(0);
+    const [optional, setOptional] = useState<string[]>([]);
+
+    useEffect(() => {
+        loadModels();
+        loadProduction();
+    }, [])
+
+    async function loadModels() {
+        try {
+            const response = await API.get<Model[]>("/model");
+            setModels(response.data)
+        } catch (errr: any) {
+            console.log("EROOOu")
+        }
+    }
+
+    async function loadProduction() {
+        try {
+            const response = await API.get<Production[]>("/production");
+            setProductions(response.data)
+        } catch (errr: any) {
+            console.log("EROOOu")
+        }
+    }
+
+    async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault()
+
+        const newProduction = {
+            modelId: modelId,
+            color: color,
+            amount: amount,
+            optional: optional
+        }
+
+        try {
+            await API.post("/production", newProduction);
+            resetValues()
+            loadProduction()
+        } catch (errr: any) {
+            console.log("EROOOu")
+        } finally {
+            return
+        }
+    }
+
+    function resetValues() {
+        setModelId("")
+        setColor("")
+        setAmount(0)
+        setOptional([])
+    }
+
+    
+const columns: GridColDef<(typeof productions)[number]>[] = [
+
+    { field: 'id', headerName: 'ID',width: 300, },
+    {
+        field: 'model',
         headerName: 'Modelo',
-        width: 500,
+        width: 200,
         editable: false,
     },
     {
@@ -29,36 +95,26 @@ const columns: GridColDef<(typeof rows)[number]>[] = [
     {
         field: 'optional',
         headerName: 'Opcionais',
-        width: 300,
+        width: 500,
     },
 ];
 
-const rows = [
-    { id: 1, model: 'Fiat Uno Mille 1.0 FLex', color: 'Vermelho', amount: 2, optional: "Volante" },
-    { id: 2, model: 'Fiat Fiorino', color: 'Preto', amount: 10, optional: "Direção Elétrica" },
-    { id: 3, model: 'Fiat Toro', color: 'Branco', amount: 4, optional: "Ár-Condicionado, Câmbio Automático" },
-    { id: 4, model: 'Fiat Strada', color: 'Prata', amount: 100, optional: "Direção Elétrica" },
-];
-
-export default function Production() {
-    const [openModal, setOpenModal] = useState<boolean>(false);
-    const [opcionaisSelected, setOptionaisSelected] = useState<string[]>([]);
-
     return (
         <div className={styles.container}>
-            <ModalNewModel open={openModal} handleClose={() => setOpenModal(!openModal)} />
+            <ModalNewModel open={openModal} handleClose={() => setOpenModal(!openModal)} loadModels={loadModels} />
             <h1>Produção</h1>
 
             <div className={styles.content}>
                 <h2>Novo Veículo</h2>
-                <form className={styles.form}>
+                <form className={styles.form} onSubmit={handleSubmit}>
                     <div>
                         <div className={styles.formSeparetor}>
                             <FormControl sx={{ width: '60%' }}>
                                 <InputLabel>Selecione a Modelo</InputLabel>
-                                <Select label="Selecione o Modelo">
-                                    <MenuItem value={10}>Uno Mille 1.4</MenuItem>
-                                    <MenuItem value={20}>Toro 1.8</MenuItem>
+                                <Select label="Selecione o Modelo" value={modelId} onChange={(e) => setModelId(e.target.value)}>
+                                    {models.map(model => (
+                                        <MenuItem value={model.id} key={model.id}>{model.name}</MenuItem>
+                                    ))}
                                 </Select>
                             </FormControl>
                             <div className={styles.buttonAdd} onClick={() => setOpenModal(true)}>
@@ -68,20 +124,21 @@ export default function Production() {
                             <FormControl sx={{ width: '30%' }}>
                                 <InputLabel>Selecione a Cor</InputLabel>
                                 <Select label="Selecione a Cor">
-                                    <MenuItem value={10}>Preto</MenuItem>
-                                    <MenuItem value={20}>Branco</MenuItem>
-                                    <MenuItem value={30}>Prata</MenuItem>
-                                    <MenuItem value={30}>Grafite</MenuItem>
+                                    <MenuItem value={"Preto"}>Preto</MenuItem>
+                                    <MenuItem value={"Branco"}>Branco</MenuItem>
+                                    <MenuItem value={"Prata"}>Prata</MenuItem>
+                                    <MenuItem value={"Cinza"}>Cinza</MenuItem>
+                                    <MenuItem value={"Vermelho"}>Vermelho</MenuItem>
                                 </Select>
                             </FormControl>
-                            <TextField label="Quantidade" variant="outlined" type='number' />
+                            <TextField label="Quantidade" variant="outlined" type='number' value={amount} onChange={e => setAmount(Number(e.target.value))} />
                         </div>
 
                         <div className={styles.formSeparetor}>
                             <SelectOptional
                                 optionais={["Ár-Condicionado", "Direção Elétrica", "Câmbio automático", "Roda Liga Leve", "Banco de Couro", "Câmeras traseiras"]}
-                                selected={opcionaisSelected}
-                                onSelect={setOptionaisSelected}
+                                selected={optional}
+                                onSelect={setOptional}
                             />
                         </div>
                     </div>
@@ -94,9 +151,9 @@ export default function Production() {
             <h1>Lista Últimos Produzidos</h1>
             <div className={styles.datagrid}>
                 <DataGrid
-                    rows={rows}
+                    rows={productions as any}
                     columns={columns}
-                    sx={{ maxHeight: '270px'}}
+                    sx={{ maxHeight: '270px' }}
                     hideFooter
                 />
             </div>

@@ -13,3 +13,22 @@ type Mark = {
     id: string;
     name: string;
 }
+
+type Model = {
+    id: string;
+    name: string;
+    numberOfPorts: number;
+    fuelType: string;
+    createdAt: Date;
+    updatedAt: Date;
+}
+
+type Production = {
+    id: string;
+    model: string;
+    color: string;
+    amount: number;
+    optional: string[];
+    createdAt: Date;
+    updatedAt: Date;
+}
