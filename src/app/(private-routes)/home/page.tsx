@@ -1,7 +1,7 @@
 "use client";
 
 import Cabecalho from "@/components/Cabecalho/pages";
-import ReactECharts from "echarts-for-react";
+import ReactEcharts from "echarts-for-react"
 
 export default function Home() {
   const option = {
@@ -39,13 +39,13 @@ export default function Home() {
   };
 
   return (
-    <div className="container p-4">
+    <div className="container-home">
       <Cabecalho name="Home" />
       <div className="mt-6">
-        <ReactECharts option={option} />
+        <ReactEcharts option={option} />
       </div>
       <div className="mt-6">
-        <ReactECharts option={option} />
+        <ReactEcharts option={option} />
       </div>
     </div>
   );

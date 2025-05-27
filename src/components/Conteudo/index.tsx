@@ -55,12 +55,12 @@ export default function RenderConteudo() {
         <div className="conteudo">
             <header className="header">
                 <div className="cadastrar">
-                    <button onClick={() => setProduto('register')}>
+                    <button className='button-cadastra' onClick={() => setProduto('register')}>
                         <MdAdd /> Cadastrar
                     </button>
                 </div>
                 <div className="consultar">
-                    <button onClick={() => setProduto('consultar')}>
+                    <button className='button-consulta' onClick={() => setProduto('consultar')}>
                         <BiSearch size={20} /> Consultar
                     </button>
                 </div>

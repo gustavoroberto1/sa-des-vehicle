@@ -59,7 +59,7 @@ body {
 
 .container-conteudo {
     width: 100%;
-    min-height: 100vh;
+    min-height: 600px;
     background-color: white;
 }
 
