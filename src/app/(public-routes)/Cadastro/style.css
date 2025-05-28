@@ -1,0 +1,115 @@
+body {
+    background-color: #c7c7c7;
+    font-family: 'Times New Roman', Times, serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background-color: #a9a9a9;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    min-width: 30%;
+    min-height: 30%;
+    padding: 14px;
+    border-radius: 16px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 12px 13px;
+}
+
+.container .inputs {
+    display: flex;
+    min-width: 100%;
+    flex-direction: column;
+    border-radius: 6px;
+    padding: 10px;
+    
+}
+
+.container input {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: none;
+}
+
+.container .icons {
+    display: flex;
+    margin-top: -72px;
+    background-color: #a9a9a9;
+    border-radius: 50%;
+    margin-bottom: 16px;
+}
+
+.container .itens-1 {
+    display: flex;
+    flex-direction: row;
+    height: 42px;
+    margin-top: 0px;
+    margin-bottom: 22px;
+}
+
+.container .icon-name {
+    background-color: #c4c4c4;
+    border-right: 1px solid #a9a9a9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 15%;
+    height: 42px;
+}
+
+.container .itens-2 {
+    display: flex;
+    flex-direction: row;
+    height: 42px;
+    margin-bottom: 12px;
+}
+
+.container .icon-email {
+    background-color: #c4c4c4;
+    border-right: 1px solid #a9a9a9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 15%;
+    height: 42px;
+}
+
+.container .itens-3 {
+    display: flex;
+    flex-direction: row;
+    height: 42px;
+    margin-top: 0px;
+    margin-bottom: 22px;
+}
+
+.container .icon-date {
+    background-color: #c4c4c4;
+    border-right: 1px solid #a9a9a9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 15%;
+    height: 42px;
+}
+
+.container .itens-4 {
+    display: flex;
+    flex-direction: row;
+    height: 42px;
+    margin-top: 0px;
+    margin-bottom: 22px;
+}
+
+.container .icon-password {
+    background-color: #c4c4c4;
+    border-right: 1px solid #a9a9a9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 15%;
+    height: 42px;
+}
