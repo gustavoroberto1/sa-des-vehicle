@@ -1,7 +1,11 @@
+"use client"
+
 import "./style.css"
 import { BsPersonCircle } from "react-icons/bs";
 import { TbLockPassword } from "react-icons/tb";
 import { IoPeopleOutline } from "react-icons/io5";
+import Link from "next/link";
+
 
 export default function Login() {
     return (
@@ -27,11 +31,12 @@ export default function Login() {
                 <div className="button-login">
                     <button>Login</button>
                 </div>
-
-                <a href="http://">Cadastre-se</a>
+                <Link href="/Cadastro">
+                    <span>Cadastre-se</span>
+                </Link>
 
             </div>
-        </div>
+        </div >
 
     )
 }

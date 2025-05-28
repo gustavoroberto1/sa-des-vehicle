@@ -6,13 +6,12 @@ body {
   height: 100vh;
   width: 100%;
   overflow-y: auto;
-
 }
 
-.Container-producao {
-  min-width: 900px;
-  max-width: 90%;
-  height: 100vh;
+.producao {
+  min-width: 850px;
+  max-width: 85%;
+  min-height: 80vh;
   margin: 20px auto;
   background-color: white;
   padding: 20px;
@@ -20,11 +19,11 @@ body {
   overflow-y: scroll;
 }
 
-h1 {
+.h1 {
   color: #fff;
 }
 
-h2 {
+.h2 {
   color: #363636;
   margin-bottom: 20px;
   text-align: center;
@@ -39,6 +38,9 @@ h2 {
 .form-group {
   flex: 1 1 300px;
 }
+.group-form {
+  flex: 1 1 300px;
+}
 
 label {
   display: block;
@@ -47,8 +49,14 @@ label {
 }
 
 input,
-select,
-button {
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+.envia-producao {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
@@ -56,7 +64,7 @@ button {
   border: 1px solid #ddd;
 }
 
-button {
+.envia-producao {
   background-color: #28a745;
   color: white;
   cursor: pointer;
@@ -72,7 +80,6 @@ button:hover {
 
 .vehicle-list {
   margin-top: 40px;
-  max-height: 300px;
   overflow-y: auto;
   border: 1px solid #ddd;
 }
@@ -88,14 +95,12 @@ button:hover {
 .vehicle-list th,
 .vehicle-list td {
   border: 1px solid #ddd;
-
 }
 
 .vehicle-list th,
 .vehicle-list td {
   padding: 12px;
   text-align: left;
-
 }
 
 .vehicle-list th {

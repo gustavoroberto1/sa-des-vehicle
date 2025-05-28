@@ -87,10 +87,10 @@ export default function Producao() {
   return (
     <div>
       <Cabecalho name="Produção" />
-      <div className="Container-producao">
+      <div className="producao">
         <main>
           <section>
-            <h2>Registrar Novo Veículo</h2>
+            <h2 className="h2">Registrar Novo Veículo</h2>
             <form onSubmit={handleSubmit}>
               <div className="form-container">
                 <div className="form-group">
@@ -103,7 +103,7 @@ export default function Producao() {
                   />
                 </div>
 
-                <div className="form-group">
+                <div className="group-form">
                   <label htmlFor="cor">Cor do Veículo</label>
                   <select
                     id="cor"
@@ -166,12 +166,12 @@ export default function Producao() {
                 </div>
               </div>
 
-              <button type="submit" onClick={creatVeiculo}>Enviar para Produção</button>
+              <button className="envia-producao" type="submit" onClick={creatVeiculo}>Enviar para Produção</button>
             </form>
           </section>
 
           <section className="vehicle-list">
-            <h2>Veículos Produzidos</h2>
+            <h2 className="h2">Veículos Produzidos</h2>
             <table>
               <thead>
                 <tr>
