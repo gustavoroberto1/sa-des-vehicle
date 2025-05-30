@@ -32,3 +32,16 @@ type Production = {
     createdAt: Date;
     updatedAt: Date;
 }
+
+type Quality = {
+    id: string;
+    production: {
+        model: string;
+        color: string;
+        amount: number;
+        optional: string[]
+    }
+    status: string;
+    createdAt: Date;
+    updatedAt: Date;
+}

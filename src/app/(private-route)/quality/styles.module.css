@@ -9,13 +9,13 @@
     width: 100%;
     margin-bottom: 16px;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 16px;
 }
 
 .order {
     max-width: 235px;
-    min-width: 235px;
+    min-width: 100%;
     display: flex;
     flex-direction: column;
     border-radius: 10px;
@@ -26,25 +26,34 @@
 }
 
 .status {
-    margin-top: 16px;
-    width: 100%;
-    border-radius: 10px;
-    padding: 8px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px 16px;
     display: flex;
+    gap: 6px;
     justify-content: center;
     align-items: center;
 }
 
+.status svg {
+    font-weight: bold;
+}
+
 .notEvalueted {
-    border: 1px solid #707480;
-    color: #707480;
-    background-color: #efefef;
+    border: 1px solid #eab308;
+    color: #a16207;
+    background-color: #fefce8;
+}
+
+.notEvalueted svg {
+    color: #eab308;
 }
 
 .approved {
     border: 1px solid #008000;
-    color: #008000;
-    background-color: #dcedc8;
+    color: #166534;
+    background-color: #dcfce7;
 }
 
 .failed {
@@ -53,13 +62,18 @@
     background-color: #ffcdd2;
 }
 
+.failed svg {
+    width: 14px;
+    height: 14px;
+}
+
 .tabs {
     margin-top: 10px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: start;
-    gap: 16px   ;
+    gap: 16px;
     margin-bottom: 16px;
 }
 
@@ -71,7 +85,7 @@
     justify-content: center;
     align-items: center;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     font-size: 18px;
     font-weight: bold;
@@ -92,4 +106,35 @@
     opacity: 1;
     background-color: #e2452f;
     border: 1px solid #e2452f;
+}
+
+.groupOptional {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.optional {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    margin-left: 8px;
+    margin-top: 3px
+}
+
+.optional svg {
+    width: 15px;
+    height: 15px;
+}
+
+.topTitle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.gridValidation {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
