@@ -1,11 +1,11 @@
 'use client'
 
-import { useEffect, useState } from "react"
-import styles from './styles.module.css';
-import { API } from "@/service/api";
-import { ReviewCard } from "@/components/ReviewCard";
-import { Status, StatusLabel } from "@/types/status";
 import { ModalQuality } from "@/components/ModalQuality";
+import { ReviewCard } from "@/components/ReviewCard";
+import { API } from "@/service/api";
+import { Status, StatusLabel } from "@/types/status";
+import { useEffect, useState } from "react";
+import styles from './styles.module.css';
 
 const reviewCard1 = {
     id: "batch-001",
@@ -60,32 +60,32 @@ const reviewCard3 = {
 
 export default function Quality() {
     const [tab, setTab] = useState<Status>(Status.PENDING);
-    const [quality, setQuality] = useState<Quality[]>([]);
-    const [assessmentOpen, setAssesmentOpen] = useState<boolean>(false);
-    const [assessmentId, setAssesmentId] = useState<string>("");
+    const [reviews, setReviews] = useState<Review[]>([]);
+    const [openReview, setOpenReview] = useState<boolean>(false);
+    const [reviewId, setReviewId] = useState<string>("");
 
     useEffect(() => {
-        loadAvaliable(tab);
+        loadReviews(tab);
     }, [tab])
 
-    async function loadAvaliable(status: Status) {
+    async function loadReviews(status: Status) {
         try {
-            const response = await API.get<Quality[]>(`/quality?status=${StatusLabel[status]}`);
-            setQuality(response.data)
+            const response = await API.get<Review[]>(`/quality?status=${StatusLabel[status]}`);
+            setReviews(response.data)
         } catch (errr: any) {
             console.log("EROOOu")
         }
     }
 
-    function handleOpenAssessment(id: string) {
+    function handleOpenReview(id: string) {
         console.log("Entrouu")
-        setAssesmentId(id);
-        setAssesmentOpen(true);
+        setReviewId(id);
+        setOpenReview(true);
     }
 
     return (
         <div className={styles.container}>
-            {assessmentOpen && <ModalQuality open={assessmentOpen} handleClose={setAssesmentOpen} assessmentId={assessmentId} />}
+            {openReview && <ModalQuality open={openReview} handleClose={setOpenReview} assessmentId={reviewId} />}
             <h1>Qualidade</h1>
             <div className={styles.tabs}>
                 <div onClick={() => setTab(Status.PENDING)} className={`${styles.tab} ${tab === Status.PENDING && styles.tabSelected}`}>Pendentes</div>
@@ -94,12 +94,12 @@ export default function Quality() {
             </div>
 
             <div className={styles.content}>
-                {quality.map(q => (
-                    <ReviewCard key={q.id} batch={reviewCard1} onClick={() => handleOpenAssessment("teste")}/>
+                {reviews.map(q => (
+                    <ReviewCard key={q.id} batch={reviewCard1} onClick={() => handleOpenReview("teste")}/>
                 ))}
-                <ReviewCard batch={reviewCard1} onClick={() => handleOpenAssessment("teste")} />
-                <ReviewCard batch={reviewCard2} onClick={() => handleOpenAssessment("teste2")}/>
-                <ReviewCard batch={reviewCard3} onClick={() => handleOpenAssessment("teste3")}/>
+                <ReviewCard batch={reviewCard1} onClick={() => handleOpenReview("teste")} />
+                <ReviewCard batch={reviewCard2} onClick={() => handleOpenReview("teste2")}/>
+                <ReviewCard batch={reviewCard3} onClick={() => handleOpenReview("teste3")}/>
             </div>
         </div>
     )

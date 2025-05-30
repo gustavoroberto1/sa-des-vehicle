@@ -1,13 +1,14 @@
-import { Status, StatusIcon, StatusLabel } from "@/types/status";
+import { Status } from "@/types/status";
+import { Tooltip } from "@mui/material";
 import { CgComponents } from "react-icons/cg";
 import { FaCamera, FaCarBattery, FaCogs, FaSnowflake, FaSortAmountUp } from "react-icons/fa";
-import { IoColorPalette } from "react-icons/io5";
-import styles from "./styles.module.css";
-import { Tooltip } from "@mui/material";
-import { MdChair, MdOutlineElectricCar } from "react-icons/md";
 import { GiCarWheel } from "react-icons/gi";
+import { IoColorPalette } from "react-icons/io5";
 import { LuCircleCheckBig, LuCircleX, LuClock, LuLoaderPinwheel } from "react-icons/lu";
-import { PiEngineBold, PiEngineFill, PiTire } from "react-icons/pi";
+import { MdChair, MdOutlineElectricCar } from "react-icons/md";
+import { PiEngineFill } from "react-icons/pi";
+import { ReviewStatus } from "../ReviewStatus";
+import styles from "./styles.module.css";
 
 export type ReviewCardProps = {
     batch: {
@@ -45,13 +46,7 @@ export function ReviewCard({ batch, ...props }: ReviewCardProps) {
         <div className={styles.card_container} {...props}>
             <div className={styles.card_header}>
                 <h2>{batch.production.model}</h2>
-                <div
-                    className={`${styles.card_header_status} ${styles["status-" + batch.status.toLowerCase()]
-                        }`}
-                >
-                    {StatusIcon[batch.status]}
-                    <span>{StatusLabel[batch.status]}</span>
-                </div>
+                <ReviewStatus status={batch.status}/>
             </div>
 
             <div className={styles.card_item}>

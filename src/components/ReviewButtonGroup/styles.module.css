@@ -1,0 +1,49 @@
+.container_button_group {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: 8px;
+}
+
+.button_opinion {
+  background-color: transparent;
+  border-radius: 4px;
+  padding: 10px 24px 8px;
+  border: 1px solid #cccccc;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 8px;
+  font-weight: bold;
+}
+
+.button_opinion:hover {
+  background-color: #f0f0f0;
+}
+
+.approved {
+  background-color: #166534;
+  color: #ffffff;
+  border-radius: 6px;
+  padding: 10px 24px 8px;
+  border: 1px solid #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 8px;
+  font-weight: bold;
+}
+
+.rejected {
+  background-color: #ef4444;
+  color: #ffffff;
+  border-radius: 6px;
+  padding: 10px 24px 8px;
+  border: 1px solid #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 8px;
+  font-weight: bold;
+}

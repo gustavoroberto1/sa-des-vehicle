@@ -1,86 +1,63 @@
 .container {
-    width: 600px;
-    gap: 16px;
-    display: flex;
-    flex: 1;
-    padding: 16px 24px;
-    flex-direction: column;
+  width: 600px;
+  gap: 16px;
+  display: flex;
+  flex: 1;
+  padding: 16px 24px;
+  flex-direction: column;
 }
 
 .close {
-    position: relative;
-    cursor: pointer;
+  position: relative;
+  cursor: pointer;
 }
 
 .close:hover {
-    opacity: 0.5;
+  opacity: 0.5;
 }
 
 .close svg {
-    position: absolute;
-    right: 10px;
-    top: 10px
+  position: absolute;
+  right: 10px;
+  top: 10px;
 }
 
 .modal_header {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  display: flex;
+  flex-direction: column;
 }
 
 .modal_header h2,
 .modal_content h2 {
-    font-size: 18px;
+  font-size: 18px;
 }
 
 .modal_content {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .modal_header span {
-    font-size: 14px;
-    color: #666666;
+  font-size: 14px;
+  color: #666666;
 }
 
 .modal_content_item {
-    border: 1px solid #cccccc;
-    border-radius: 6px;
-    padding: 16px;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  padding: 16px;
 }
 
-.modal_content_item_header, .header_title {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 8px;
+.modal_content_item_header,
+.header_title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
 }
 
 .modal_content_item_header {
-    justify-content: space-between;
-    margin-bottom: 16px;    
-}
-
-.modal_content_item_footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: start;
-    align-items: center;
-    gap: 8px;
-}
-
-.modal_content_item_footer button {
-    background-color: transparent;
-    border-radius: 4px;
-    padding: 10px 24px 8px;
-    border: 1px solid #cccccc;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 8px;
-}
-
-.modal_content_item_footer button:hover {
-    background-color: #f0f0f0;
+  justify-content: space-between;
+  margin-bottom: 8px;
 }

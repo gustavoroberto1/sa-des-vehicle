@@ -33,7 +33,7 @@ type Production = {
     updatedAt: Date;
 }
 
-type Quality = {
+type Review = {
     id: string;
     production: {
         model: string;
