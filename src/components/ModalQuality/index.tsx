@@ -1,12 +1,14 @@
 "use client";
 
 import { Status } from "@/types/status";
+import { JSX } from "@emotion/react/jsx-runtime";
 import { Close } from "@mui/icons-material";
 import { Dialog } from "@mui/material";
 import { useState } from "react";
 import { CgComponents } from "react-icons/cg";
 import { FaCarBattery } from "react-icons/fa";
 import { GiCarWheel } from "react-icons/gi";
+import { LuNotepadText } from "react-icons/lu";
 import { PiEngineFill } from "react-icons/pi";
 import { ReviewButtonGroup } from "../ReviewButtonGroup";
 import { ReviewStatus } from "../ReviewStatus";
@@ -16,6 +18,12 @@ type ModalQualityProps = {
   assessmentId: string;
   open: boolean;
   handleClose: (value: boolean) => void;
+};
+
+type ItemProps = {
+  icon: JSX.Element;
+  label: string;
+  slug: "engine" | "tire" | "battery" | "accessories";
 };
 export function ModalQuality({
   open,
@@ -53,17 +61,40 @@ export function ModalQuality({
     setReview((prev) => ({ ...prev, [key]: value }));
   }
 
-  function getStatus(value: boolean | null){
-    if(value === null) {
+  function getStatus(value: boolean | null) {
+    if (value === null) {
       return Status.PENDING;
     }
 
-    if(value){
+    if (value) {
       return Status.APPROVED;
     }
 
-    return Status.REJECTED
+    return Status.REJECTED;
   }
+
+  const reviewItems: ItemProps[] = [
+    {
+      icon: <PiEngineFill />,
+      label: "Motor",
+      slug: "engine",
+    },
+    {
+      icon: <GiCarWheel />,
+      label: "Pneu",
+      slug: "tire",
+    },
+    {
+      icon: <FaCarBattery />,
+      label: "Bateria",
+      slug: "battery",
+    },
+    {
+      icon: <CgComponents />,
+      label: "Acessórios",
+      slug: "accessories",
+    },
+  ];
 
   return (
     <Dialog open={open} onClose={handleClose}>
@@ -79,64 +110,38 @@ export function ModalQuality({
         <div className={styles.modal_content}>
           <h2>Componentes do Veículo</h2>
 
-          <div className={styles.modal_content_item}>
-            <div className={styles.modal_content_item_header}>
-              <div className={styles.header_title}>
-                <PiEngineFill />
-                <span>Motor</span>
+          {reviewItems.map((item) => (
+            <div className={styles.modal_content_item} key={item.slug}>
+              <div className={styles.modal_content_item_header}>
+                <div className={styles.header_title}>
+                  {item.icon}
+                  <span>{item.label}</span>
+                </div>
+                <ReviewStatus status={getStatus(review[item.slug])} />
               </div>
-              <ReviewStatus status={getStatus(review.engine)} />
+              <ReviewButtonGroup
+                opinion={review.engine}
+                selectOpinion={handleSelectOption}
+                slug={item.slug}
+              />
             </div>
-            <ReviewButtonGroup
-              opinion={review.engine}
-              selectOpinion={handleSelectOption}
-              slug="engine"
-            />
+          ))}
+
+          <div className={styles.divider} />
+
+          <div className={styles.observation_container}>
+            <div className={styles.observation_container_header}>
+              <LuNotepadText />
+              <h2>Observação</h2>
+            </div>
+            <textarea  rows={4} />
           </div>
 
-          <div className={styles.modal_content_item}>
-            <div className={styles.modal_content_item_header}>
-              <div className={styles.header_title}>
-                <GiCarWheel />
-                <span>Pneu</span>
-              </div>
-              <ReviewStatus status={getStatus(review.tire)} />
-            </div>
-            <ReviewButtonGroup
-              opinion={review.tire}
-              selectOpinion={handleSelectOption}
-              slug="tire"
-            />
-          </div>
+          <div className={styles.divider} />
 
-          <div className={styles.modal_content_item}>
-            <div className={styles.modal_content_item_header}>
-              <div className={styles.header_title}>
-                <FaCarBattery />
-                <span>Bateria</span>
-              </div>
-              <ReviewStatus status={getStatus(review.battery)} />
-            </div>
-            <ReviewButtonGroup
-              opinion={review.battery}
-              selectOpinion={handleSelectOption}
-              slug="battery"
-            />
-          </div>
-
-          <div className={styles.modal_content_item}>
-            <div className={styles.modal_content_item_header}>
-              <div className={styles.header_title}>
-                <CgComponents />
-                <span>Accessórios</span>
-              </div>
-              <ReviewStatus status={getStatus(review.accessories)} />
-            </div>
-            <ReviewButtonGroup
-              opinion={review.accessories}
-              selectOpinion={handleSelectOption}
-              slug="accessories"
-            />
+          <div className={styles.footer_container}>
+            <button className={styles.cancel} onClick={() => handleClose(false)}>Cancelar</button>
+            <button className={styles.send}>Enviar Avaliação</button>
           </div>
         </div>
       </div>
